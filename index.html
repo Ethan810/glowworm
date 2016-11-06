@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>test</title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			#bg{
+				background:url(bg.jpg) ;
+				width:100%;
+				height:100%;
+				position:fixed;
+				
+			}
+			img{
+				width:18px;
+				height:18px;
+				position:absolute;
+			}
+		</style>
+		<script src="jquery-1.11.3.js"></script>
+		<script type="text/javascript">
+			function glowWorm (){
+				show();
+				setInterval(fly,1000);
+			}
+			var img ;
+			function show(){
+			
+				for(var i=0;i<200;i++){
+					img = document.createElement('img');
+					img.src = "1.jpg";
+					var div = document.getElementById('bg');
+					div.appendChild(img);
+				}
+				
+			}
+			function fly(){
+				var speed = createSpeed(30);
+				var imgs = document.getElementsByTagName('img');
+				for(var i=0;i<imgs.length;i++){
+					imgs[i].style.left = createPiont(10) +speed +"px";
+					imgs[i].style.top  = createPiont(20) +speed+"px";
+				}
+				
+			}
+			
+			function createSpeed(des){
+				var speed = parseInt(des -img.offsetLeft /5);
+				speed = speed>0 ? Math.ceil(speed) : Math.floor(speed);
+				return speed;
+			}
+			function createPiont(n){
+				var res= Math.random()*1300 +n;
+				return res;
+				
+			}
+			
+			window.onload = function(){
+				glowWorm ();
+			
+			}
+		</script>
+	</head>
+	<body>
+		<div id="bg"></div>
+	</body>
+</html>
